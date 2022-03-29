@@ -21,8 +21,8 @@ MonoBehaviour:
     type: 3}
   soundElementPrefabMusic: {fileID: 6071614414244539377, guid: 0fd9dadb6a7011940a6a0248c207cb33,
     type: 3}
-  volumeSfx: 0.54148495
-  volumeScaleAmbient: 0.2219619
+  volumeSfx: 0.50996405
+  volumeScaleAmbient: 0.29774094
   volumeScaleMusic: 0.345
   easeTime: 1
   easeCurve:
@@ -54,6 +54,7 @@ MonoBehaviour:
   timerColor: {r: 0.9339623, g: 0.84607184, b: 0.10279448, a: 1}
   defaultColor: {r: 0.9528302, g: 0.82796246, b: 0.22172773, a: 1}
   updateTime: 0.3
+  defaultColoringTime: 0.5
   audioContainersSFX:
   - {fileID: 11400000, guid: e6cbd5674b1e371448aafadabcb1c314, type: 2}
   - {fileID: 11400000, guid: d201d2d579752dd4290c35bc373edacf, type: 2}
@@ -87,7 +88,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e47e4b033dd0aa94cb56471534193ef6, type: 2}
   - {fileID: 11400000, guid: a4427dab5f92a4d4392b687097e8817d, type: 2}
   - {fileID: 11400000, guid: 336bbd8881ba16e44be2dac7e50bdbf8, type: 2}
-  - {fileID: 11400000, guid: aec391b1345009244949f3ac6c7d98be, type: 2}
   - {fileID: 11400000, guid: 4225bbdf342c93c4090165a0f303f142, type: 2}
   - {fileID: 11400000, guid: f04ada254cf0f814f8a1766ca09a97a4, type: 2}
   - {fileID: 11400000, guid: 87d708cb33e5e14428b0db016c1e9f2d, type: 2}

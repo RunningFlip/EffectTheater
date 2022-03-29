@@ -16,11 +16,12 @@ MonoBehaviour:
   colorSet:
     mainColor: {r: 0, g: 0, b: 0, a: 0}
     lerpColor: {r: 0, g: 0, b: 0, a: 0}
-  useClipDuration: 1
   audioClipInfos:
-  - audioClip: {fileID: 8300000, guid: 89e871b1b933ec149a77590cad5f8f50, type: 3}
+  - audioClip: {fileID: 8300000, guid: c1813f22700b7ef44984a43027e78521, type: 3}
     volume: 1
-    coloringDuration: 0
-  - audioClip: {fileID: 8300000, guid: 64eb79ecad9d6954a98edb0de2951d53, type: 3}
+    useCustomDuration: 0
+    coloringDuration: 0.9484807
+  - audioClip: {fileID: 8300000, guid: 9846e2f04bd84c346aee93e868f2e0c4, type: 3}
     volume: 1
-    coloringDuration: 0
+    useCustomDuration: 0
+    coloringDuration: 1.0624716

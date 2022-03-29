@@ -17,7 +17,7 @@ MonoBehaviour:
     mainColor: {r: 0.2168624, g: 0.8018868, b: 0.24668713, a: 0.5019608}
     lerpColor: {r: 0, g: 0, b: 0, a: 0}
   audioClipInfos:
-  - audioClip: {fileID: 8300000, guid: b917a5caa1ba96c4393dd4550b60f038, type: 3}
+  - audioClip: {fileID: 8300000, guid: c8aa29bcd6ca5a344a305aae88a946e5, type: 3}
     volume: 1
     useCustomDuration: 0
     coloringDuration: 80
