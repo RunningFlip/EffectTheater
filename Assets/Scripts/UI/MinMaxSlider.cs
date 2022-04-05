@@ -5,23 +5,47 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
 
+//--------------------------------------------------------------------------------
 
-namespace CustomSlider
-{
+namespace Theater.UI {
+
 	[RequireComponent(typeof(RectTransform))]
-	public class MinMaxSlider : Selectable, IBeginDragHandler, IDragHandler, IEndDragHandler
-	{
-		private enum DragState
-		{
+	public class MinMaxSlider : Selectable, IBeginDragHandler, IDragHandler, IEndDragHandler {
+
+		//--------------------------------------------------------------------------------
+		// Inner enum
+		//--------------------------------------------------------------------------------
+
+		private enum DragState {
 			Both,
 			Min,
 			Max
 		}
 
+		//--------------------------------------------------------------------------------
+		// Inner class
+		//--------------------------------------------------------------------------------
+
+		/// <summary>
+		/// Event invoked when either slider value has changed
+		/// <para></para>
+		/// T0 = min, T1 = max
+		/// </summary>
+		[Serializable]
+		public class SliderEvent : UnityEvent<float, float> { }
+
+		//--------------------------------------------------------------------------------
+		// Constants
+		//--------------------------------------------------------------------------------
+
 		/// <summary>
 		/// Floating point tolerance
 		/// </summary>
 		private const float FLOAT_TOL = 0.01f;
+
+		//--------------------------------------------------------------------------------
+		// Fields
+		//--------------------------------------------------------------------------------
 
 		[Header("UI Controls")]
 		[SerializeField] private Camera customCamera = null;
@@ -46,17 +70,7 @@ namespace CustomSlider
 		[SerializeField] private float minValue = 25;
 		[SerializeField] private float maxValue = 75;
 
-		public MinMaxValues Values => new MinMaxValues(minValue, maxValue, minLimit, maxLimit);
-
-		/// <summary>
-		/// Event invoked when either slider value has changed
-		/// <para></para>
-		/// T0 = min, T1 = max
-		/// </summary>
-		[Serializable]
-		public class SliderEvent : UnityEvent<float, float>
-		{
-		}
+		//--------------------------------------------------------------------------------
 
 		public SliderEvent onValueChanged = new SliderEvent();
 
@@ -71,9 +85,18 @@ namespace CustomSlider
 		private Canvas parentCanvas;
 		private bool isOverlayCanvas;
 
+		//--------------------------------------------------------------------------------
+		// Properties
+		//--------------------------------------------------------------------------------
 
-		protected override void Start()
-		{
+		public MinMaxValues Values => new MinMaxValues(minValue, maxValue, minLimit, maxLimit);
+
+		//--------------------------------------------------------------------------------
+		// Methods
+		//--------------------------------------------------------------------------------
+
+		protected override void Start() {
+
 			base.Start();
 
 			if (!sliderBounds)
@@ -86,24 +109,30 @@ namespace CustomSlider
 			UpdateText();
 		}
 
-		public void SetLimits(float minLimit, float maxLimit)
-		{
+		//--------------------------------------------------------------------------------
+
+		public void SetLimits(float minLimit, float maxLimit) {
+
 			this.minLimit = wholeNumbers ? Mathf.RoundToInt(minLimit) : minLimit;
 			this.maxLimit = wholeNumbers ? Mathf.RoundToInt(maxLimit) : maxLimit;
 		}
 
-		public void SetValues(MinMaxValues values)
-		{
+		//--------------------------------------------------------------------------------
+
+		public void SetValues(MinMaxValues values) {
 			SetValues(values.minValue, values.maxValue, values.minLimit, values.maxLimit);
 		}
 
-		public void SetValues(float minValue, float maxValue)
-		{
+		//--------------------------------------------------------------------------------
+
+		public void SetValues(float minValue, float maxValue) {
 			SetValues(minValue, maxValue, minLimit, maxLimit);
 		}
 
-		public void SetValues(float minValue, float maxValue, float minLimit, float maxLimit)
-		{
+		//--------------------------------------------------------------------------------
+
+		public void SetValues(float minValue, float maxValue, float minLimit, float maxLimit) {
+
 			this.minValue = wholeNumbers ? Mathf.RoundToInt(minValue) : minValue;
 			this.maxValue = wholeNumbers ? Mathf.RoundToInt(maxValue) : maxValue;
 			SetLimits(minLimit, maxLimit);
@@ -116,8 +145,10 @@ namespace CustomSlider
 			onValueChanged.Invoke(this.minValue, this.maxValue);
 		}
 
-		private void RefreshSliders()
-		{
+		//--------------------------------------------------------------------------------
+
+		private void RefreshSliders() {
+
 			SetSliderAnchors();
 
 			float clampedMin = Mathf.Clamp(minValue, minLimit, maxLimit);
@@ -127,8 +158,10 @@ namespace CustomSlider
 			SetHandleValue01(maxHandle, GetPercentage(minLimit, maxLimit, clampedMax));
 		}
 
-		private void SetSliderAnchors()
-		{
+		//--------------------------------------------------------------------------------
+
+		private void SetSliderAnchors() {
+
 			minHandle.anchorMin = new Vector2(0, 0.5f);
 			minHandle.anchorMax = new Vector2(0, 0.5f);
 			minHandle.pivot = new Vector2(0.5f, 0.5f);
@@ -138,8 +171,10 @@ namespace CustomSlider
 			maxHandle.pivot = new Vector2(0.5f, 0.5f);
 		}
 
-		private void UpdateText()
-		{
+		//--------------------------------------------------------------------------------
+
+		private void UpdateText() {
+
 			if (minText)
 				minText.SetText(minValue.ToString(textFormat));
 
@@ -147,8 +182,10 @@ namespace CustomSlider
 				maxText.SetText(maxValue.ToString(textFormat));
 		}
 
-		private void UpdateMiddleGraphic()
-		{
+		//--------------------------------------------------------------------------------
+
+		private void UpdateMiddleGraphic() {
+
 			if (!middleGraphic)
 				return;
 
@@ -158,32 +195,30 @@ namespace CustomSlider
 			middleGraphic.offsetMax = new Vector2(maxHandle.anchoredPosition.x, 0);
 		}
 
-		public void OnBeginDrag(PointerEventData eventData)
-		{
+		//--------------------------------------------------------------------------------
+
+		public void OnBeginDrag(PointerEventData eventData) {
+
 			var clickPosition = isOverlayCanvas
 				? (Vector3)eventData.position
 				: mainCamera.ScreenToWorldPoint(eventData.position);
 
 			passDragEvents = Math.Abs(eventData.delta.x) < Math.Abs(eventData.delta.y);
 
-			if (passDragEvents)
-			{
+			if (passDragEvents) {
 				PassDragEvents<IBeginDragHandler>(x => x.OnBeginDrag(eventData));
 			}
-			else
-			{
+			else {
 				dragStartPosition = clickPosition;
 				dragStartMinValue01 = GetValue01(minHandle.position.x);
 				dragStartMaxValue01 = GetValue01(maxHandle.position.x);
 
 				// set drag state
-				if (dragStartPosition.x < minHandle.position.x || IsWithinRect(minHandle, dragStartPosition))
-				{
+				if (dragStartPosition.x < minHandle.position.x || IsWithinRect(minHandle, dragStartPosition)) {
 					dragState = DragState.Min;
 					minHandle.SetAsLastSibling();
 				}
-				else if (dragStartPosition.x > maxHandle.position.x || IsWithinRect(maxHandle, dragStartPosition))
-				{
+				else if (dragStartPosition.x > maxHandle.position.x || IsWithinRect(maxHandle, dragStartPosition)) {
 					dragState = DragState.Max;
 					maxHandle.SetAsLastSibling();
 				}
@@ -192,22 +227,21 @@ namespace CustomSlider
 			}
 		}
 
-		public void OnDrag(PointerEventData eventData)
-		{
+		//--------------------------------------------------------------------------------
+
+		public void OnDrag(PointerEventData eventData) {
+
 			var clickPosition = isOverlayCanvas
 				? (Vector3)eventData.position
 				: mainCamera.ScreenToWorldPoint(eventData.position);
 
-			if (passDragEvents)
-			{
+			if (passDragEvents) {
 				PassDragEvents<IDragHandler>(x => x.OnDrag(eventData));
 			}
-			else if (minHandle && maxHandle)
-			{
+			else if (minHandle && maxHandle) {
 				SetSliderAnchors();
 
-				if (dragState == DragState.Min || dragState == DragState.Max)
-				{
+				if (dragState == DragState.Min || dragState == DragState.Max) {
 					float dragPosition01 = GetValue01(clickPosition.x);
 					float minHandleValue = GetValue01(minHandle.position.x);
 					float maxHandleValue = GetValue01(maxHandle.position.x);
@@ -217,8 +251,7 @@ namespace CustomSlider
 					else if (dragState == DragState.Max)
 						SetHandleValue01(maxHandle, Mathf.Clamp(dragPosition01, minHandleValue, 1));
 				}
-				else
-				{
+				else {
 					var sliderBoundsRect = sliderBounds.rect;
 					var rectStart = sliderBoundsRect.position;
 					var rectEnd = rectStart;
@@ -243,14 +276,14 @@ namespace CustomSlider
 			}
 		}
 
-		public void OnEndDrag(PointerEventData eventData)
-		{
-			if (passDragEvents)
-			{
+		//--------------------------------------------------------------------------------
+
+		public void OnEndDrag(PointerEventData eventData) {
+
+			if (passDragEvents) {
 				PassDragEvents<IEndDragHandler>(x => x.OnEndDrag(eventData));
 			}
-			else
-			{
+			else {
 				float minHandleValue = GetValue01(minHandle.position.x);
 				float maxHandleValue = GetValue01(maxHandle.position.x);
 
@@ -262,14 +295,14 @@ namespace CustomSlider
 			}
 		}
 
-		private void PassDragEvents<T>(Action<T> callback) where T : IEventSystemHandler
-		{
+		//--------------------------------------------------------------------------------
+
+		private void PassDragEvents<T>(Action<T> callback) where T : IEventSystemHandler {
+
 			Transform parent = transform.parent;
 
-			while (parent != null)
-			{
-				foreach (var component in parent.GetComponents<Component>())
-				{
+			while (parent != null) {
+				foreach (var component in parent.GetComponents<Component>()) {
 					if (!(component is T))
 						continue;
 
@@ -281,21 +314,24 @@ namespace CustomSlider
 			}
 		}
 
+		//--------------------------------------------------------------------------------
+
 		/// <summary>
 		/// Generates rectTransforms world corners
 		/// </summary>
-		private void GetWorldCorners()
-		{
+		private void GetWorldCorners() {
 			sliderBounds.GetWorldCorners(worldCorners);
 		}
+
+		//--------------------------------------------------------------------------------
 
 		/// <summary>
 		/// Sets handles position 
 		/// </summary>
 		/// <param name="handle"></param>
 		/// <param name="value01"></param>
-		private void SetHandleValue01(Transform handle, float value01)
-		{
+		private void SetHandleValue01(Transform handle, float value01) {
+
 			GetWorldCorners();
 			Vector2 pos = new Vector2(
 				Mathf.Lerp(worldCorners[0].x, worldCorners[2].x, value01),
@@ -304,13 +340,15 @@ namespace CustomSlider
 			handle.position = new Vector3(pos.x, pos.y, handle.position.z);
 		}
 
+		//--------------------------------------------------------------------------------
+
 		/// <summary>
 		/// Returns a values from 0-1 based on this rects world corners
 		/// </summary>
 		/// <param name="worldPositionX"></param>
 		/// <returns></returns>
-		private float GetValue01(float worldPositionX)
-		{
+		private float GetValue01(float worldPositionX) {
+
 			GetWorldCorners();
 			float posX = Mathf.Clamp(worldPositionX, worldCorners[0].x, worldCorners[2].x);
 			return GetPercentage(worldCorners[0].x, worldCorners[2].x, posX);
@@ -323,26 +361,37 @@ namespace CustomSlider
 		/// <param name="max"></param>
 		/// <param name="input"></param>
 		/// <returns></returns>
-		private static float GetPercentage(float min, float max, float input)
-		{
+		private static float GetPercentage(float min, float max, float input) {
 			return (input - min) / (max - min);
 		}
 
-		private static bool IsWithinRect(RectTransform rect, Vector2 worldPosition)
-		{
+		//--------------------------------------------------------------------------------
+
+		private static bool IsWithinRect(RectTransform rect, Vector2 worldPosition) {
+
 			Vector3[] corners = new Vector3[4];
 			rect.GetWorldCorners(corners);
 			return worldPosition.x > corners[0].x && worldPosition.x < corners[2].x;
 		}
 
+		//--------------------------------------------------------------------------------
+
 		[Serializable]
-		public struct MinMaxValues
-		{
+		public struct MinMaxValues {
+
+			//--------------------------------------------------------------------------------
+			// Fields
+			//--------------------------------------------------------------------------------
+
 			public float minValue, maxValue, minLimit, maxLimit;
 			public static MinMaxValues DEFUALT = new MinMaxValues(25, 75, 0, 100);
 
-			public MinMaxValues(float minValue, float maxValue, float minLimit, float maxLimit)
-			{
+			//--------------------------------------------------------------------------------
+			// Constructor
+			//--------------------------------------------------------------------------------
+
+			public MinMaxValues(float minValue, float maxValue, float minLimit, float maxLimit) {
+
 				this.minValue = minValue;
 				this.maxValue = maxValue;
 				this.minLimit = minLimit;
@@ -354,23 +403,31 @@ namespace CustomSlider
 			/// </summary>
 			/// <param name="minValue"></param>
 			/// <param name="maxValue"></param>
-			public MinMaxValues(float minValue, float maxValue)
-			{
+			public MinMaxValues(float minValue, float maxValue) {
+
 				this.minValue = minValue;
 				this.maxValue = maxValue;
 				this.minLimit = minValue;
 				this.maxLimit = maxValue;
 			}
 
-			public bool IsAtMinAndMax()
-			{
+			//--------------------------------------------------------------------------------
+			// Methods
+			//--------------------------------------------------------------------------------
+
+			public bool IsAtMinAndMax() {
 				return Math.Abs(minValue - minLimit) < FLOAT_TOL && Math.Abs(maxValue - maxLimit) < FLOAT_TOL;
 			}
 
-			public override string ToString()
-			{
+			//--------------------------------------------------------------------------------
+
+			public override string ToString() {
 				return $"Values(min:{minValue}, max:{maxValue}) | Limits(min:{minLimit}, max:{maxLimit})";
 			}
+
+			//--------------------------------------------------------------------------------
 		}
+
+		//--------------------------------------------------------------------------------
 	}
 }
