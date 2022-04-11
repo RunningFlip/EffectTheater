@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142ec95f1cd536241a9a0d6ff6b6275f, type: 3}
+  m_Name: SFXSoundCollection
+  m_EditorClassIdentifier: 
+  soundType: 0
+  masterVolume: 1.54
+  soundHandlers:
+  - title: Handgun
+    searchTags: 0
+    colorizer:
+      color: {r: 0, g: 0, b: 0, a: 0}
+    soundTuples:
+    - title: Handgun 0
+      volume: 0.087
+      audioClip: {fileID: 8300000, guid: 78544747df918db45b0525f4ec05d155, type: 3}
+    - title: Handgun 1
+      volume: 0.085
+      audioClip: {fileID: 8300000, guid: 476b298533f16264cb3f711f6f085ff4, type: 3}
+    - title: Handgun 2
+      volume: 0.085
+      audioClip: {fileID: 8300000, guid: 9a592fcfb9ca267479b2d4fd37222163, type: 3}

@@ -530,6 +530,7 @@ GameObject:
   - component: {fileID: 7319617901415102561}
   - component: {fileID: 7687055433713892341}
   - component: {fileID: 6645371776725626910}
+  - component: {fileID: 605334405219566368}
   m_Layer: 5
   m_Name: Sound Element Ambient
   m_TagString: Untagged
@@ -648,6 +649,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &605334405219566368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456860586505493913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48dfd7e9da835445b98faba2c71d132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 5456860587726567963}
+  outline: {fileID: 5456860587045380177}
+  playButton: {fileID: 5456860587282059815}
+  expandButton: {fileID: 4033363971447657674}
+  expandSprite: {fileID: 3286163911610860551, guid: 5de5a22e5463c7446992f10f78b0283c,
+    type: 3}
+  collapseSprite: {fileID: 3286163911610860551, guid: 7386257736fee584f97178170becdb70,
+    type: 3}
+  playSprite: {fileID: 3286163911610860551, guid: f8b54e677e2b6354eb7257d03e6849fc,
+    type: 3}
+  stopSprite: {fileID: 3286163911610860551, guid: 490b03dfb0260324fa8798cde03ac4bd,
+    type: 3}
 --- !u!1 &5456860587045380179
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +883,7 @@ GameObject:
   - component: {fileID: 5456860587726567960}
   - component: {fileID: 5456860587726567963}
   m_Layer: 5
-  m_Name: Label
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

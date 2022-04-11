@@ -1,34 +1,28 @@
-﻿using System;
+﻿using System.IO;
+using Theater.Coloring;
+using UnityEditor;
 
 //--------------------------------------------------------------------------------
 
 namespace Theater.Sounds {
 
-    [Serializable]
-    public abstract class SoundHandlerBase {
+    public class MusicSoundCollection : SoundCollectionBase<SoundLoopHandler, LerpColorizer> {
 
         //--------------------------------------------------------------------------------
         // Fields
         //--------------------------------------------------------------------------------
 
-        public string Title { get; }
-        public SoundTuple[] SoundTuple { get; }
+        public static string ResourcePath => Path.Combine(MusicSoundCollection.ResourcesPath, "MusicSoundCollection.asset");
 
         //--------------------------------------------------------------------------------
-        // Constructor
+        // Music
         //--------------------------------------------------------------------------------
 
-        public SoundHandlerBase(string title, SoundTuple[] soundTuple) {
-
-            this.Title = title;
-            this.SoundTuple = soundTuple;
+        [MenuItem("Sound Collections/Create Music")]
+        public static void CreateMusicCollection() {
+            MusicSoundCollection collection = CreateAsset<MusicSoundCollection>(Path.Combine("Assets", ResourcePath));
+            collection.soundType = SoundType.Music;
         }
-
-        //--------------------------------------------------------------------------------
-        // Methods
-        //--------------------------------------------------------------------------------
-
-        public abstract void Play();
 
         //--------------------------------------------------------------------------------
     }

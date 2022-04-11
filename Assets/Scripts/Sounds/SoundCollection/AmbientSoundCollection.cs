@@ -1,27 +1,27 @@
-﻿using System;
-using UnityEngine;
+﻿using System.IO;
+using Theater.Coloring;
+using UnityEditor;
 
 //--------------------------------------------------------------------------------
 
 namespace Theater.Sounds {
 
-    [Serializable]
-    public class SFXHandler : SoundHandlerBase {
+    public class AmbientSoundCollection : SoundCollectionBase<SoundLoopHandler, LerpColorizer> {
 
         //--------------------------------------------------------------------------------
-        // Constructor
+        // Fields
         //--------------------------------------------------------------------------------
 
-        public SFXHandler(string title, SoundTuple[] soundTuple) : base (title, soundTuple) { }
+        public static string ResourcePath => Path.Combine(AmbientSoundCollection.ResourcesPath, "AmbientSoundCollection.asset");
 
         //--------------------------------------------------------------------------------
         // Methods
         //--------------------------------------------------------------------------------
 
-        public override void Play() {
-
-            SoundTuple tupel = this.SoundTuple.GetRandom();
-            AudioSource.PlayClipAtPoint(tupel.audioClip, Vector3.zero, tupel.volume);
+        [MenuItem("Sound Collections/Create Ambient")]
+        public static void CreateAmbientCollection() {
+            AmbientSoundCollection collection = CreateAsset<AmbientSoundCollection>(Path.Combine("Assets", ResourcePath));
+            collection.soundType = SoundType.Ambient;
         }
 
         //--------------------------------------------------------------------------------

@@ -1,4 +1,5 @@
 ﻿using System;
+using Theater.Coloring;
 using UnityEngine;
 
 //--------------------------------------------------------------------------------
@@ -6,23 +7,14 @@ using UnityEngine;
 namespace Theater.Sounds {
 
     [Serializable]
-    public class SoundLoopHandler : SoundHandlerBase {
-
-        //--------------------------------------------------------------------------------
-        // Fields
-        //--------------------------------------------------------------------------------
-
-        private AudioSource source;
+    public class SFXHandler : SoundHandlerBase<SimpleColorizer> {
 
         //--------------------------------------------------------------------------------
         // Constructor
         //--------------------------------------------------------------------------------
 
-        public SoundLoopHandler(AudioSource source, string title, SoundTuple[] soundTuple) 
-            : base(title, soundTuple) {
-
-            this.source = source;
-        }
+        public SFXHandler(string title, SearchTag searchTag, SoundTuple[] soundTuples) 
+            : base (title, searchTag, soundTuples) { }
 
         //--------------------------------------------------------------------------------
         // Methods
@@ -30,11 +22,8 @@ namespace Theater.Sounds {
 
         public override void Play() {
 
-            SoundTuple tupel = this.SoundTuple.GetRandom();
-
-            this.source.clip = tupel.audioClip;
-            this.source.volume = tupel.volume;
-            this.source.Play();
+            SoundTuple tuple = this.soundTuples.GetRandom();
+            AudioSource.PlayClipAtPoint(tuple.AudioClip, Vector3.zero, tuple.Volume);
         }
 
         //--------------------------------------------------------------------------------

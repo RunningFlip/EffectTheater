@@ -1,4 +1,5 @@
-﻿using Theater.Sounds;
+﻿using Theater.Coloring;
+using Theater.Sounds;
 using TMPro;
 using UnityEngine;
 
@@ -32,25 +33,28 @@ namespace Theater.UI {
         // Methods
         //--------------------------------------------------------------------------------
 
-        public void InitScrollView(SoundCollection soundCollection) {
+        public void InitScrollView<T, R>(SoundCollectionBase<T, R> soundCollection) 
+            where T : SoundHandlerBase<R> 
+            where R : ColorizerBase {
 
             this.volumeSlider.Value = soundCollection.masterVolume;
+            this.volumeSlider.OnValueChanged += (volume) => { soundCollection.masterVolume = volume; };
 
             GameObject prefab = null;
 
             switch (soundCollection.soundType) {
 
-                case SoundCollection.SoundType.SFX:
+                case SoundType.SFX:
                     this.title.text = SoundScrollView.SFX_TITLE;
                     prefab = this.soundElementSFXPrefab;
                     break;
 
-                case SoundCollection.SoundType.Ambient:
+                case SoundType.Ambient:
                     this.title.text = SoundScrollView.AMBIENT_TITLE;
                     prefab = this.soundElementAmbientPrefab;
                     break;
 
-                case SoundCollection.SoundType.Music:
+                case SoundType.Music:
 
                     this.title.text = SoundScrollView.MUSIC_TITLE;
                     prefab = this.soundElementMusicPrefab;
@@ -61,8 +65,8 @@ namespace Theater.UI {
 
                 for (int i = 0; i < soundCollection.soundHandlers.Length; i++) {
 
-                    SoundElement element = GameObject.Instantiate(prefab, this.contentParent).GetComponent<SoundElement>();
-                    element.Initialize(soundCollection.soundHandlers[i]);
+                    SoundElementBase<T, R> element = GameObject.Instantiate(prefab, this.contentParent).GetComponent<SoundElementBase<T, R>>();
+                    element?.Initialize(soundCollection.soundHandlers[i]);
                 }
             }
         }

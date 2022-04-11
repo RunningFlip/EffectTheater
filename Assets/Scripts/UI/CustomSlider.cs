@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +41,8 @@ namespace Theater.UI {
 
         private Slider slider;
 
+        public event Action<float> OnValueChanged;
+
         //--------------------------------------------------------------------------------
         // Methods
         //--------------------------------------------------------------------------------
@@ -54,8 +57,10 @@ namespace Theater.UI {
 
             this.slider = this.GetComponent<Slider>();
 
-            slider.onValueChanged.AddListener((value) => {
-                label.text = ((int)(value * 100f)).ToString();
+            this.slider.onValueChanged.AddListener((value) => {
+
+                this.label.text = ((int)(value * 100f)).ToString();
+                this.OnValueChanged?.Invoke(value);
             });
         }
 
