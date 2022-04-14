@@ -10,6 +10,12 @@ namespace Theater.Sounds {
     public class SFXHandler : SoundHandlerBase<SimpleColorizer> {
 
         //--------------------------------------------------------------------------------
+        // Properties
+        //--------------------------------------------------------------------------------
+
+        public override float MasterVolume { get; set; } = 1f;
+
+        //--------------------------------------------------------------------------------
         // Constructor
         //--------------------------------------------------------------------------------
 
@@ -23,7 +29,7 @@ namespace Theater.Sounds {
         public override void Play() {
 
             SoundTuple tuple = this.soundTuples.GetRandom();
-            AudioSource.PlayClipAtPoint(tuple.AudioClip, Vector3.zero, tuple.Volume);
+            AudioSource.PlayClipAtPoint(tuple.AudioClip, Vector3.zero, tuple.Volume * this.MasterVolume);
         }
 
         //--------------------------------------------------------------------------------

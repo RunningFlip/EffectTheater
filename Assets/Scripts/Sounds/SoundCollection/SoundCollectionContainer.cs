@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using System.IO;
-
-//--------------------------------------------------------------------------------
-
+﻿
 namespace Theater.Sounds {
 
     public class SoundCollectionContainer {

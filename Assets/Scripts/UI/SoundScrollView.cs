@@ -66,7 +66,10 @@ namespace Theater.UI {
                 for (int i = 0; i < soundCollection.soundHandlers.Length; i++) {
 
                     SoundElementBase<T, R> element = GameObject.Instantiate(prefab, this.contentParent).GetComponent<SoundElementBase<T, R>>();
-                    element?.Initialize(soundCollection.soundHandlers[i]);
+                    element.Initialize(soundCollection.soundHandlers[i]);
+
+                    element.MasterVolume = this.volumeSlider.Value;
+                    this.volumeSlider.OnValueChanged += (volume) => element.MasterVolume = volume;
                 }
             }
         }

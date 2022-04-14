@@ -14,6 +14,20 @@ namespace Theater.UI {
         where R : ColorizerBase {
 
         //--------------------------------------------------------------------------------
+        // Properties
+        //--------------------------------------------------------------------------------
+
+        public float MasterVolume {
+
+            get => this.masterVolume;
+
+            set {
+                this.masterVolume = value;
+                this.soundHandler.MasterVolume = this.masterVolume;
+            }
+        }
+
+        //--------------------------------------------------------------------------------
         // Fields
         //--------------------------------------------------------------------------------
 
@@ -28,10 +42,13 @@ namespace Theater.UI {
         [SerializeField] private Sprite collapseSprite;
 
         private bool expanded;
+        private float masterVolume;
 
         private Animator animator;
         private Image expandButtonImage;
         protected T soundHandler;
+
+        protected static Color defaultColor = Color.white;
 
         //--------------------------------------------------------------------------------
         // Methods
@@ -44,9 +61,11 @@ namespace Theater.UI {
             this.animator = this.GetComponent<Animator>();
             this.expandButtonImage = this.expandButton.image;
 
+            this.ApplyColor(defaultColor);
             this.OnInitialize(soundHandler);
 
-            playButton.onClick.AddListener(this.soundHandler.Play);
+            this.soundHandler.MasterVolume = this.MasterVolume;
+            playButton.onClick.AddListener(() => this.soundHandler.Play());
             expandButton.onClick.AddListener(this.ToggleExpandButton);
         }
 
@@ -64,7 +83,19 @@ namespace Theater.UI {
 
         //--------------------------------------------------------------------------------
 
+        protected void ApplyColor(Color color) {
+
+            this.outline.color = color;
+            this.playButton.image.color = color;
+
+            this.OnApplyColor(color);
+        }
+
+        //--------------------------------------------------------------------------------
+
         protected abstract void OnInitialize(T soundHandler);
+
+        protected abstract void OnApplyColor(Color color);
 
         //--------------------------------------------------------------------------------
     }

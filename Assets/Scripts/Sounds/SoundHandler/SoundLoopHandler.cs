@@ -18,8 +18,27 @@ namespace Theater.Sounds {
         public float Time => this.source?.time ?? 0f;
 
         //--------------------------------------------------------------------------------
+
+        public override float MasterVolume { 
+
+            get {
+                return this.masterVolume;
+            }
+
+            set {
+                this.masterVolume = value;
+
+                if (this.source != null) {
+                    this.source.volume = this.currentTuple.Volume * this.masterVolume;
+                }
+            }
+        }
+
+        //--------------------------------------------------------------------------------
         // Fields
         //--------------------------------------------------------------------------------
+
+        private float masterVolume = 1f;
 
         private AudioSource source;
         private SoundTuple currentTuple;
@@ -48,7 +67,7 @@ namespace Theater.Sounds {
 
                 this.currentTuple = this.soundTuples.GetRandom();
                 this.source.clip = this.currentTuple.AudioClip;
-                this.source.volume = this.currentTuple.Volume;
+                this.source.volume = this.currentTuple.Volume * this.MasterVolume;
                 this.source.loop = true;
                 this.source.Play();
             }
