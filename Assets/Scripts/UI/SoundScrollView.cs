@@ -2,8 +2,8 @@
 using Theater.Sounds;
 using TMPro;
 using UnityEngine;
-using System;
 using System.Linq;
+using System.Collections.Generic;
 
 //--------------------------------------------------------------------------------
 
@@ -47,18 +47,18 @@ namespace Theater.UI {
             switch (soundCollection.soundType) {
 
                 case SoundType.SFX:
-                    this.title.text = SoundScrollView.SFX_TITLE;
+                    this.title.text = SFX_TITLE;
                     prefab = this.soundElementSFXPrefab;
                     break;
 
                 case SoundType.Ambient:
-                    this.title.text = SoundScrollView.AMBIENT_TITLE;
+                    this.title.text = AMBIENT_TITLE;
                     prefab = this.soundElementAmbientPrefab;
                     break;
 
                 case SoundType.Music:
 
-                    this.title.text = SoundScrollView.MUSIC_TITLE;
+                    this.title.text = MUSIC_TITLE;
                     prefab = this.soundElementMusicPrefab;
                     break;
             }
@@ -69,8 +69,8 @@ namespace Theater.UI {
 
                     SoundElementBase<T, R> element = GameObject.Instantiate(prefab, this.contentParent).GetComponent<SoundElementBase<T, R>>();
                     element.Initialize(soundCollection.soundType, handler);
-
                     element.MasterVolume = this.volumeSlider.Value;
+
                     this.volumeSlider.OnValueChanged += (volume) => element.MasterVolume = volume;
                 }
             }

@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Misc;
-using System;
+﻿using System;
 using Theater.Coloring;
+using Theater.Misc;
 
 //--------------------------------------------------------------------------------
 

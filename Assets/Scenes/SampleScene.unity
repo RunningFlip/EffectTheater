@@ -2277,6 +2277,7 @@ GameObject:
   - component: {fileID: 1017715435}
   - component: {fileID: 1017715434}
   - component: {fileID: 1017715433}
+  - component: {fileID: 1017715436}
   m_Layer: 5
   m_Name: InputField Search
   m_TagString: Untagged
@@ -2442,6 +2443,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017715431}
   m_CullTransparentMesh: 0
+--- !u!114 &1017715436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017715431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8537785a0727f4a993bfb1f8145903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clearButton: {fileID: 661011190}
 --- !u!1 &1028199324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3788,6 +3802,7 @@ MonoBehaviour:
   sfxScrollView: {fileID: 7139933430044477965}
   ambientScrollView: {fileID: 1912163187}
   musicScrollView: {fileID: 203541939}
+  searchFilter: {fileID: 1017715436}
 --- !u!1 &1860832484
 GameObject:
   m_ObjectHideFlags: 0

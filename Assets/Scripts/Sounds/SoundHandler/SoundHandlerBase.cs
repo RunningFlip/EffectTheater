@@ -18,6 +18,8 @@ namespace Theater.Sounds {
         public T Colorizer => this.colorizer;
         public SoundTuple[] SoundTuples => this.soundTuples;
 
+        public GameObject UIElement { get; set; }
+
         //--------------------------------------------------------------------------------
 
         public abstract float MasterVolume { get; set; }

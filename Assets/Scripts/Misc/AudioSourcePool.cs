@@ -4,7 +4,7 @@ using UnityEngine;
 
 //--------------------------------------------------------------------------------
 
-namespace Assets.Scripts.Misc {
+namespace Theater.Misc {
 
     public class AudioSourcePool : Pool<SoundEase> {
 

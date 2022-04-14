@@ -59,6 +59,7 @@ namespace Theater.UI {
 
             this.soundType = soundType;
             this.soundHandler = soundHandler;
+            this.soundHandler.UIElement = this.gameObject;
 
             this.title.text = this.soundHandler.Title;
             this.animator = this.GetComponent<Animator>();

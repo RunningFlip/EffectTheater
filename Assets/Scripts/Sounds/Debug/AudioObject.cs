@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "AudioObject", menuName = "Create AudioObject")]
 public class AudioObject : ScriptableObject {
