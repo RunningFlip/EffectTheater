@@ -59,7 +59,7 @@ namespace Theater.UI {
 
             this.slider.onValueChanged.AddListener((value) => {
 
-                this.label.text = ((int)(value * 100f)).ToString();
+                this.label.text = ((int)((value * 100f) + 0.5f)).ToString();
                 this.OnValueChanged?.Invoke(value);
             });
         }
