@@ -44,15 +44,15 @@ namespace Theater.Sounds {
 
         public void Play(SoundLoopHandler soundHandler) {
 
-            if (this.isPlaying) {
-                this.source.Stop();
-            }
-
             this.soundHandler = soundHandler;
 
+            if (!this.isPlaying) {
+
+                this.source.Play();
+                this.source.volume = 0f;
+            }
+
             this.isPlaying = true;
-            this.source.Play();
-            this.source.volume = 0f;
 
             this.StopAllCoroutines();
             this.StartCoroutine(this.EaseVolume(this.source.volume, this.soundHandler.Volume, null));
