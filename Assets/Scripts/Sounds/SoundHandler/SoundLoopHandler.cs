@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Misc;
 using System;
-using System.Collections.Generic;
 using Theater.Coloring;
 using UnityEngine;
 
@@ -16,7 +15,7 @@ namespace Theater.Sounds {
         //--------------------------------------------------------------------------------
 
         public float ClipLength => this.currentTuple?.AudioClip?.length ?? 0f;
-        public float Time => this.source?.time ?? 0f;
+        public float Time => this.soundEase?.Source?.time ?? 0f;
 
         //--------------------------------------------------------------------------------
 
@@ -29,11 +28,15 @@ namespace Theater.Sounds {
             set {
                 this.masterVolume = value;
 
-                if (this.source != null) {
-                    this.source.volume = this.currentTuple.Volume * this.masterVolume;
+                if (this.soundEase != null) {
+                    this.soundEase.Source.volume = this.currentTuple.Volume * this.masterVolume;
                 }
             }
         }
+
+        //--------------------------------------------------------------------------------
+
+        public float Volume => this.currentTuple.Volume * this.MasterVolume;
 
         //--------------------------------------------------------------------------------
         // Fields
@@ -42,7 +45,7 @@ namespace Theater.Sounds {
         private bool isPlaying;
         private float masterVolume = 1f;
 
-        private AudioSource source;
+        private SoundEase soundEase;
         private SoundTuple currentTuple;
 
         private static AudioSourcePool audioSourcePool = new AudioSourcePool(10);
@@ -61,8 +64,8 @@ namespace Theater.Sounds {
 
         public override void Play() {
 
-            if (this.source == null) {
-                this.source = SoundLoopHandler.audioSourcePool.Get();
+            if (this.soundEase == null) {
+                this.soundEase = SoundLoopHandler.audioSourcePool.Get();
             }
 
             if (!this.isPlaying) {
@@ -70,21 +73,29 @@ namespace Theater.Sounds {
                 this.isPlaying = true;
 
                 this.currentTuple = this.soundTuples.GetRandom();
-                this.source.clip = this.currentTuple.AudioClip;
-                this.source.volume = this.currentTuple.Volume * this.MasterVolume;
-                this.source.loop = true;
+                this.soundEase.Source.clip = this.currentTuple.AudioClip;
+                this.soundEase.Source.loop = true;
 
-                this.isPlaying = true;
-                this.source.Play();      
+                this.soundEase.Play(this);
             }
             else {
 
                 this.isPlaying = false;
-                this.source.Stop();
 
-                SoundLoopHandler.audioSourcePool.Return(this.source);
-                this.source = null;
+                this.soundEase.Stop();
+                this.soundEase.OnStop -= this.OnStop;
+                this.soundEase.OnStop += this.OnStop;
             }
+        }
+
+        //--------------------------------------------------------------------------------
+
+        private void OnStop() {
+
+            this.soundEase.OnStop -= this.OnStop;
+
+            SoundLoopHandler.audioSourcePool.Return(this.soundEase);
+            this.soundEase = null;
         }
 
         //--------------------------------------------------------------------------------
