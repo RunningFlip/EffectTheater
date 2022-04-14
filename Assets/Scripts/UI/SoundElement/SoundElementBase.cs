@@ -43,6 +43,7 @@ namespace Theater.UI {
 
         private bool expanded;
         private float masterVolume;
+        protected SoundType soundType;
 
         private Animator animator;
         private Image expandButtonImage;
@@ -54,9 +55,11 @@ namespace Theater.UI {
         // Methods
         //--------------------------------------------------------------------------------
 
-        public void Initialize(T soundHandler) {
+        public void Initialize(SoundType soundType, T soundHandler) {
 
+            this.soundType = soundType;
             this.soundHandler = soundHandler;
+
             this.title.text = this.soundHandler.Title;
             this.animator = this.GetComponent<Animator>();
             this.expandButtonImage = this.expandButton.image;

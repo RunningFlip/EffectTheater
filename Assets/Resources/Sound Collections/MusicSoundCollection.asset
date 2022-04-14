@@ -25,3 +25,23 @@ MonoBehaviour:
     - title: Barren Settlement
       volume: 0.082
       audioClip: {fileID: 8300000, guid: 2cf075862ca4083498944ba356a39b34, type: 3}
+  - title: Dangerous Dungeon
+    searchTags: 0
+    colorizer:
+      fromColor: {r: 0, g: 0, b: 0, a: 0}
+      toColor: {r: 0, g: 0, b: 0, a: 0}
+      lerpSpeed: 0
+    soundTuples:
+    - title: Dangerous Dungeon LOOP
+      volume: 0.082
+      audioClip: {fileID: 8300000, guid: c8aa29bcd6ca5a344a305aae88a946e5, type: 3}
+  - title: Pretty  Dungeon
+    searchTags: 0
+    colorizer:
+      fromColor: {r: 0, g: 0, b: 0, a: 0}
+      toColor: {r: 0, g: 0, b: 0, a: 0}
+      lerpSpeed: 0
+    soundTuples:
+    - title: Pretty Dungeon
+      volume: 0.082
+      audioClip: {fileID: 8300000, guid: 2ceafd2ee6f7bc943b83c019d350e262, type: 3}

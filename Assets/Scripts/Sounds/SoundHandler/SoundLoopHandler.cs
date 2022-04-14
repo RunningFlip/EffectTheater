@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Misc;
 using System;
+using System.Collections.Generic;
 using Theater.Coloring;
 using UnityEngine;
 
@@ -38,6 +39,7 @@ namespace Theater.Sounds {
         // Fields
         //--------------------------------------------------------------------------------
 
+        private bool isPlaying;
         private float masterVolume = 1f;
 
         private AudioSource source;
@@ -60,21 +62,27 @@ namespace Theater.Sounds {
         public override void Play() {
 
             if (this.source == null) {
-                this.source = audioSourcePool.Get();
+                this.source = SoundLoopHandler.audioSourcePool.Get();
             }
 
-            if (!this.source.isPlaying) {
+            if (!this.isPlaying) {
+
+                this.isPlaying = true;
 
                 this.currentTuple = this.soundTuples.GetRandom();
                 this.source.clip = this.currentTuple.AudioClip;
                 this.source.volume = this.currentTuple.Volume * this.MasterVolume;
                 this.source.loop = true;
-                this.source.Play();
+
+                this.isPlaying = true;
+                this.source.Play();      
             }
             else {
 
+                this.isPlaying = false;
                 this.source.Stop();
-                audioSourcePool.Return(this.source);
+
+                SoundLoopHandler.audioSourcePool.Return(this.source);
                 this.source = null;
             }
         }
