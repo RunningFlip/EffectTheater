@@ -25,3 +25,13 @@ MonoBehaviour:
     - title: Campfire
       volume: 0.105
       audioClip: {fileID: 8300000, guid: ea09362261d244c449795a71270b755d, type: 3}
+  - title: Forest Wind
+    searchTags: 0
+    colorizer:
+      fromColor: {r: 0, g: 0, b: 0, a: 0}
+      toColor: {r: 0, g: 0, b: 0, a: 0}
+      lerpSpeed: 0
+    soundTuples:
+    - title: Forest Wind I
+      volume: 0.105
+      audioClip: {fileID: 8300000, guid: 437bc80f16b02724891fb2740bfa0316, type: 3}

@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Misc;
 using System;
 using Theater.Coloring;
-using UnityEngine;
 
 //--------------------------------------------------------------------------------
 

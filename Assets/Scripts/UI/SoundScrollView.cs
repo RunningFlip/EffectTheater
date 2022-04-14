@@ -2,6 +2,8 @@
 using Theater.Sounds;
 using TMPro;
 using UnityEngine;
+using System;
+using System.Linq;
 
 //--------------------------------------------------------------------------------
 
@@ -63,10 +65,10 @@ namespace Theater.UI {
 
             if (prefab != null) {
 
-                for (int i = 0; i < soundCollection.soundHandlers.Length; i++) {
+                foreach (T handler in soundCollection.soundHandlers.OrderBy(x => x.Title).ToList()) {
 
                     SoundElementBase<T, R> element = GameObject.Instantiate(prefab, this.contentParent).GetComponent<SoundElementBase<T, R>>();
-                    element.Initialize(soundCollection.soundType, soundCollection.soundHandlers[i]);
+                    element.Initialize(soundCollection.soundType, handler);
 
                     element.MasterVolume = this.volumeSlider.Value;
                     this.volumeSlider.OnValueChanged += (volume) => element.MasterVolume = volume;
