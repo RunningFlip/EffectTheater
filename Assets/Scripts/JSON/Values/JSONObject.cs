@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Theater.JSON {
 
-    public class JSONObject : JSONValue{
+    public class JSONObject : JSONValue, IJSONContainer {
 
         //--------------------------------------------------------------------------------
         // Properties

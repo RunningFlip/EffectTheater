@@ -1411,6 +1411,7 @@ MonoBehaviour:
   timerButton: {fileID: 2268839892934017885}
   timerProgressBar: {fileID: 9136093078761785690}
   minMaxSlider: {fileID: 8588400243570655516}
+  color: {fileID: 3241772715379972732}
 --- !u!1 &9147122947568522411
 GameObject:
   m_ObjectHideFlags: 0

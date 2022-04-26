@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 1841500081101861751}
   - component: {fileID: 3429767807380889487}
   m_Layer: 5
-  m_Name: Color Picker Main Preview Button
+  m_Name: Color Picker Start Preview Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -128, y: 78.45}
+  m_AnchoredPosition: {x: -128, y: 78.45006}
   m_SizeDelta: {x: 256, y: 50.53943}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6076870237455449895
@@ -673,6 +673,8 @@ MonoBehaviour:
     type: 3}
   stopSprite: {fileID: 3286163911610860551, guid: 490b03dfb0260324fa8798cde03ac4bd,
     type: 3}
+  startColor: {fileID: 1841500081101861751}
+  endColor: {fileID: 1535019943124548857}
 --- !u!1 &5456860587045380179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,7 +1179,7 @@ GameObject:
   - component: {fileID: 1535019943124548857}
   - component: {fileID: 6408560150355431159}
   m_Layer: 5
-  m_Name: Color Picker Lerp Preview Button
+  m_Name: Color Picker End Preview Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

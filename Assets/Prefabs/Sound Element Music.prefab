@@ -555,6 +555,8 @@ MonoBehaviour:
     type: 3}
   stopSprite: {fileID: 3286163911610860551, guid: 490b03dfb0260324fa8798cde03ac4bd,
     type: 3}
+  startColor: {fileID: 465645921309246751}
+  endColor: {fileID: 0}
 --- !u!1 &6071614414964378749
 GameObject:
   m_ObjectHideFlags: 0

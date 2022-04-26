@@ -4,7 +4,7 @@
 
 namespace Theater.JSON {
 
-    public class JSONArray : JSONValue {
+    public class JSONArray : JSONValue, IJSONContainer {
 
         //--------------------------------------------------------------------------------
         // Properties

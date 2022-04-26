@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 //--------------------------------------------------------------------------------
 
@@ -28,20 +24,35 @@ namespace Theater.JSON {
         // Methods
         //--------------------------------------------------------------------------------
 
-        public JSONObject Parse() {
+        public IJSONContainer Parse<T>() where T : IJSONContainer {
 
             if (this.charReader == null) {
                 throw new ArgumentNullException("charReader");
             }
 
-            return this.ReadObject();
+            Type type = typeof(T);
+
+            try {
+
+                if (type == typeof(JSONObject)) {
+                    return this.ReadObject();
+                }
+                else if (type == typeof(JSONArray)) {
+                    return this.ReadArray();
+                }
+            }
+            catch (Exception e) {
+                throw new Exception($"Could not parse the to '{type}'! JSON is not valid!", e);
+            }
+
+            return null;
         }
 
         //--------------------------------------------------------------------------------
 
-        public JSONObject ReadObject() {
+        private JSONObject ReadObject() {
 
-            JSONObject json = new JSONObject();
+            JSONObject jsonObject = new JSONObject();
 
             this.charReader.SkipWhitespaces();
             this.PromiseChar(this.charReader.Peek(), JSONValue.OPEN_BRACE);
@@ -57,8 +68,7 @@ namespace Theater.JSON {
                 this.charReader.SkipWhitespaces();
 
                 JSONValue value = this.ReadValue();
-
-                json.AddValue(key, value);
+                jsonObject.AddValue(key, value);
 
                 this.charReader.SkipWhitespaces();
 
@@ -69,13 +79,14 @@ namespace Theater.JSON {
 
             this.charReader.SkipWhitespaces();
             this.PromiseChar(this.charReader.Peek(), JSONValue.CLOSED_BRACE);
+            this.charReader.Read();
 
-            return json;
+            return jsonObject;
         }
 
         //--------------------------------------------------------------------------------
 
-        public JSONArray ReadArray() {
+        private JSONArray ReadArray() {
 
             JSONArray jsonArray = new JSONArray();
 
@@ -243,12 +254,18 @@ namespace Theater.JSON {
                 while (current == '-' || char.IsDigit(current));
             }
 
-            char lastChar = str[str.Length - 1];
+            if (str.Length > 0) {
 
-            if (lastChar != '.' && lastChar != 'f' && !char.IsDigit(lastChar)) {
-                throw new Exception("Last character of read number was not a digit but '{lastChar}'! Parsing failed!");
+                char lastChar = str[str.Length - 1];
+
+                if (lastChar != '.' && lastChar != 'f' && !char.IsDigit(lastChar)) {
+                    throw new Exception($"Last character of read number was not a digit but '{lastChar}'! Parsing failed!");
+                }
             }
-
+            else {
+                throw new Exception("Number was tried to parse, but no characters were read!");
+            }
+            
             return str;
         }
 

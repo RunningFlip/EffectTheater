@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 //--------------------------------------------------------------------------------
 
@@ -23,6 +24,7 @@ namespace Theater.UI {
         // Fields
         //--------------------------------------------------------------------------------
 
+        [Header("Scroll View")]
         [SerializeField] private TextMeshProUGUI title;
         [SerializeField] private CustomSlider volumeSlider;
         [SerializeField] private Transform contentParent;
