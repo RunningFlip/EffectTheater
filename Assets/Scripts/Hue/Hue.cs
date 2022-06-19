@@ -68,8 +68,8 @@ namespace Theater.Hue {
 
         private void Awake() {
 
-            this.huePanelOpenButton.onClick.AddListener(() => { this.canvasGroup.alpha = 1; this.canvasGroup.interactable = true; this.canvasGroup.blocksRaycasts = true; });
-            this.huePanelCloseButton.onClick.AddListener(() => { this.canvasGroup.alpha = 0; this.canvasGroup.interactable = false; this.canvasGroup.blocksRaycasts = false; });
+            this.huePanelOpenButton.onClick.AddListener(() => this.canvasGroup.Show(true));
+            this.huePanelCloseButton.onClick.AddListener(() => this.canvasGroup.Show(false));
 
             this.UpdateTexts();
 
