@@ -1,14 +1,22 @@
-﻿using System.Reflection;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
-using System;
+
+//--------------------------------------------------------------------------------
 
 [CustomEditor(typeof(AudioObject))]
 public class AudioObjectEditor : Editor {
 
+    //--------------------------------------------------------------------------------
+    // Fields
+    //--------------------------------------------------------------------------------
+
     public static AudioObject lastObject;
     public static AudioSource source;
     private float lastVolume;
+
+    //--------------------------------------------------------------------------------
+    // Methods
+    //--------------------------------------------------------------------------------
 
     public override void OnInspectorGUI() {
 
@@ -78,4 +86,6 @@ public class AudioObjectEditor : Editor {
         }
         EditorGUI.EndDisabledGroup();
     }
+
+    //--------------------------------------------------------------------------------
 }
