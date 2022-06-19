@@ -16,9 +16,10 @@ MonoBehaviour:
   masterVolume: 1.54
   soundHandlers:
   - title: Handgun
-    searchTags: 0
     colorizer:
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0, g: 1, b: 0.4027965, a: 1}
+    searchTags: 
+    associations: []
     soundTuples:
     - title: Handgun 0
       volume: 0.087

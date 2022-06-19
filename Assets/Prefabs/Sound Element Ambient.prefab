@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 6934688273974429786}
   - component: {fileID: 6076870237455449895}
   - component: {fileID: 1841500081101861751}
-  - component: {fileID: 3429767807380889487}
+  - component: {fileID: 3968202433067690508}
   m_Layer: 5
   m_Name: Color Picker Start Preview Button
   m_TagString: Untagged
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3429767807380889487
+--- !u!114 &3968202433067690508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1124313649074963307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 5100d565ab151034ead615402cfe7fbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -673,8 +673,8 @@ MonoBehaviour:
     type: 3}
   stopSprite: {fileID: 3286163911610860551, guid: 490b03dfb0260324fa8798cde03ac4bd,
     type: 3}
-  startColor: {fileID: 1841500081101861751}
-  endColor: {fileID: 1535019943124548857}
+  startColorButton: {fileID: 3968202433067690508}
+  endColorButton: {fileID: 1141349016917298949}
 --- !u!1 &5456860587045380179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,7 +1177,7 @@ GameObject:
   - component: {fileID: 5790318804941967150}
   - component: {fileID: 6299909082436247124}
   - component: {fileID: 1535019943124548857}
-  - component: {fileID: 6408560150355431159}
+  - component: {fileID: 1141349016917298949}
   m_Layer: 5
   m_Name: Color Picker End Preview Button
   m_TagString: Untagged
@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6408560150355431159
+--- !u!114 &1141349016917298949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1252,7 +1252,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6758599725046092525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 5100d565ab151034ead615402cfe7fbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:

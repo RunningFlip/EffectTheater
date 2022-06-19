@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9206741721201950258}
   - component: {fileID: 5453152877629294927}
   - component: {fileID: 465645921309246751}
-  - component: {fileID: 3486040410496739815}
+  - component: {fileID: 512626024146030361}
   m_Layer: 5
   m_Name: Color Picker Preview Button
   m_TagString: Untagged
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 78.47}
+  m_AnchoredPosition: {x: 0, y: 78.47003}
   m_SizeDelta: {x: 512, y: 50.53943}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5453152877629294927
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3486040410496739815
+--- !u!114 &512626024146030361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1180578208520484099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 5100d565ab151034ead615402cfe7fbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -555,8 +555,8 @@ MonoBehaviour:
     type: 3}
   stopSprite: {fileID: 3286163911610860551, guid: 490b03dfb0260324fa8798cde03ac4bd,
     type: 3}
-  startColor: {fileID: 465645921309246751}
-  endColor: {fileID: 0}
+  startColorButton: {fileID: 512626024146030361}
+  endColorButton: {fileID: 0}
 --- !u!1 &6071614414964378749
 GameObject:
   m_ObjectHideFlags: 0

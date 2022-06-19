@@ -16,21 +16,23 @@ MonoBehaviour:
   masterVolume: 0.348
   soundHandlers:
   - title: Campfire
-    searchTags: 0
     colorizer:
-      fromColor: {r: 0, g: 0, b: 0, a: 0}
-      toColor: {r: 0, g: 0, b: 0, a: 0}
+      fromColor: {r: 1, g: 0.6273585, b: 0.6273585, a: 1}
+      toColor: {r: 0, g: 1, b: 0.7237179, a: 1}
       lerpSpeed: 0
+    searchTags: 
+    associations: []
     soundTuples:
     - title: Campfire
       volume: 0.105
       audioClip: {fileID: 8300000, guid: ea09362261d244c449795a71270b755d, type: 3}
   - title: Forest Wind
-    searchTags: 0
     colorizer:
-      fromColor: {r: 0, g: 0, b: 0, a: 0}
+      fromColor: {r: 0.35867518, g: 0.12932912, b: 0, a: 1}
       toColor: {r: 0, g: 0, b: 0, a: 0}
       lerpSpeed: 0
+    searchTags: 
+    associations: []
     soundTuples:
     - title: Forest Wind I
       volume: 0.105
