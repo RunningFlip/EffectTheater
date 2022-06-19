@@ -12,24 +12,30 @@ namespace Theater.Coloring {
         // Propertíes
         //--------------------------------------------------------------------------------
 
-        public Color FromColor => this.fromColor;
-        public Color ToColor => this.toColor;
         public float LerpSpeed => this.lerpSpeed;
 
         //--------------------------------------------------------------------------------
         // Fields
         //--------------------------------------------------------------------------------
 
-        [SerializeField] private Color fromColor;
-        [SerializeField] private Color toColor;
+        public Color fromColor;
+        public Color toColor;
         [SerializeField, Range(0, 100)] private float lerpSpeed;
 
         //--------------------------------------------------------------------------------
-        // Fields
+        // Methods
         //--------------------------------------------------------------------------------
 
         public override Color GetColor() {
-            return Color.Lerp(this.fromColor, toColor, Time.time * this.lerpSpeed);
+            return Color.Lerp(this.fromColor, this.toColor, Time.time * this.lerpSpeed);
+        }
+
+        //--------------------------------------------------------------------------------
+
+        public void SetColor(Color fromColor, Color toColor) {
+
+            this.fromColor = fromColor;
+            this.toColor = toColor;
         }
 
         //--------------------------------------------------------------------------------

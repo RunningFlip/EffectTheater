@@ -19,10 +19,12 @@ namespace Theater.Sounds {
         //--------------------------------------------------------------------------------
 
         [MenuItem("Sound Collections/Create SFX")]
-        public static void CreateSFXCollection() {
+        public static SFXSoundCollection CreateSFXCollection() {
 
             SFXSoundCollection collection = CreateAsset<SFXSoundCollection>(Path.Combine("Assets", ResourcePath));
             collection.soundType = SoundType.SFX;
+
+            return collection;
         }
 
         //--------------------------------------------------------------------------------

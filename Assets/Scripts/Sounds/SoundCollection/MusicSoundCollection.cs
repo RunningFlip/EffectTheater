@@ -6,7 +6,7 @@ using UnityEditor;
 
 namespace Theater.Sounds {
 
-    public class MusicSoundCollection : SoundCollectionBase<SoundLoopHandler, LerpColorizer> {
+    public class MusicSoundCollection : SoundCollectionBase<LoopHandler, LerpColorizer> {
 
         //--------------------------------------------------------------------------------
         // Fields
@@ -19,9 +19,12 @@ namespace Theater.Sounds {
         //--------------------------------------------------------------------------------
 
         [MenuItem("Sound Collections/Create Music")]
-        public static void CreateMusicCollection() {
+        public static MusicSoundCollection CreateMusicCollection() {
+            
             MusicSoundCollection collection = CreateAsset<MusicSoundCollection>(Path.Combine("Assets", ResourcePath));
             collection.soundType = SoundType.Music;
+
+            return collection;
         }
 
         //--------------------------------------------------------------------------------

@@ -3,8 +3,6 @@ using Theater.Sounds;
 using TMPro;
 using UnityEngine;
 using System.Linq;
-using System.Collections.Generic;
-using UnityEngine.UI;
 
 //--------------------------------------------------------------------------------
 

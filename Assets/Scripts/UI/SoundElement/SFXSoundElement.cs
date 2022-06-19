@@ -17,6 +17,8 @@ namespace Theater.UI {
         [SerializeField] private Button timerButton;
         [SerializeField] private Image timerProgressBar;
         [SerializeField] private MinMaxSlider minMaxSlider;
+        [Space]
+        [SerializeField] private ColorPickerButton colorButton;
 
         private bool activeTimer;
 
@@ -94,6 +96,17 @@ namespace Theater.UI {
 
             MinMaxSlider.MinMaxValues values = this.minMaxSlider.Values;
             this.nextExecutionTime = UnityEngine.Random.Range(values.minValue, values.maxValue);
+        }
+
+        //--------------------------------------------------------------------------------
+
+        protected override void SetupColorPickerButton(SimpleColorizer colorizer) {
+
+            if (this.colorButton != null) {
+
+                this.colorButton.image.color = this.soundHandler.Colorizer.color;
+                this.colorButton.OnColorPicked += (color) => this.soundHandler.Colorizer.color = color;
+            }
         }
 
         //--------------------------------------------------------------------------------

@@ -67,10 +67,11 @@ namespace Theater.UI {
 
             this.ApplyColor(defaultColor);
             this.OnInitialize(soundHandler);
+            this.SetupColorPickerButton(soundHandler.Colorizer);
 
             this.soundHandler.MasterVolume = this.MasterVolume;
-            playButton.onClick.AddListener(() => this.soundHandler.Play());
-            expandButton.onClick.AddListener(this.ToggleExpandButton);
+            this.playButton.onClick.AddListener(() => this.soundHandler.Play());
+            this.expandButton.onClick.AddListener(this.ToggleExpandButton);
         }
 
         //--------------------------------------------------------------------------------
@@ -98,8 +99,8 @@ namespace Theater.UI {
         //--------------------------------------------------------------------------------
 
         protected abstract void OnInitialize(T soundHandler);
-
         protected abstract void OnApplyColor(Color color);
+        protected abstract void SetupColorPickerButton(R colorizer);
 
         //--------------------------------------------------------------------------------
     }

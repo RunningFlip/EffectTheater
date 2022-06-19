@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Theater.UI {
 
-    public class LoopSoundElement : SoundElementBase<SoundLoopHandler, LerpColorizer> {
+    public class LoopSoundElement : SoundElementBase<LoopHandler, LerpColorizer> {
 
         //--------------------------------------------------------------------------------
         // Fields
@@ -17,7 +17,10 @@ namespace Theater.UI {
         [Header("Play Button Image")]
         [SerializeField] private Sprite playSprite;
         [SerializeField] private Sprite stopSprite;
-
+        [Space]
+        [SerializeField] private ColorPickerButton startColorButton;
+        [SerializeField] private ColorPickerButton endColorButton;
+       
         private bool isPlaying;
 
         private Image playButtonImage;
@@ -29,7 +32,7 @@ namespace Theater.UI {
         // Methods
         //--------------------------------------------------------------------------------
 
-        protected override void OnInitialize(SoundLoopHandler soundHandler) {
+        protected override void OnInitialize(LoopHandler soundHandler) {
 
             this.playButtonImage = this.playButton.image;
             this.playButton.onClick.AddListener(this.TogglePlayButton);
@@ -89,6 +92,23 @@ namespace Theater.UI {
                 if (this.soundType == element.soundType) {
                     element.playButton.onClick.Invoke();
                 }
+            }
+        }
+
+        //--------------------------------------------------------------------------------
+
+        protected override void SetupColorPickerButton(LerpColorizer colorizer) {
+
+            if (this.startColorButton != null) {
+
+                this.startColorButton.image.color = this.soundHandler.Colorizer.fromColor;
+                this.startColorButton.OnColorPicked += (color) => this.soundHandler.Colorizer.fromColor = color;
+            }
+
+            if (this.endColorButton != null) {
+
+                this.endColorButton.image.color = this.soundHandler.Colorizer.toColor;
+                this.endColorButton.OnColorPicked += (color) => this.soundHandler.Colorizer.toColor = color;
             }
         }
 

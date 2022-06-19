@@ -28,7 +28,7 @@ namespace Theater.Sounds {
         private bool isPlaying;
 
         private AudioSource source;
-        private SoundLoopHandler soundHandler;
+        private LoopHandler soundHandler;
 
         public event Action OnStop;
 
@@ -42,7 +42,7 @@ namespace Theater.Sounds {
 
         //--------------------------------------------------------------------------------
 
-        public void Play(SoundLoopHandler soundHandler) {
+        public void Play(LoopHandler soundHandler) {
 
             this.soundHandler = soundHandler;
 

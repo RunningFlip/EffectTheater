@@ -14,7 +14,7 @@ namespace Theater.Sounds {
         //--------------------------------------------------------------------------------
 
         public string Title => this.title;
-        public SearchTag SearchTag => this.searchTags;
+        public SearchTag[] SearchTags => this.searchTags;
         public T Colorizer => this.colorizer;
         public SoundTuple[] SoundTuples => this.soundTuples;
 
@@ -29,20 +29,22 @@ namespace Theater.Sounds {
         //--------------------------------------------------------------------------------
 
         [SerializeField] protected string title;
-        [SerializeField] protected SearchTag searchTags;
         [Space]
         [SerializeField] protected T colorizer;
         [Space]
+        [SerializeField] protected SearchTag[] searchTags;
+        [SerializeField] protected string[] associations;      
         [SerializeField] protected SoundTuple[] soundTuples;
 
         //--------------------------------------------------------------------------------
         // Constructor
         //--------------------------------------------------------------------------------
 
-        public SoundHandlerBase(string title, SearchTag searchTag, SoundTuple[] soundTuples) {
+        public SoundHandlerBase(string title, SearchTag[] searchTags, string[] associations, SoundTuple[] soundTuples) {
 
             this.title = title;
-            this.searchTags = searchTag;
+            this.searchTags = searchTags;
+            this.associations = associations;
             this.soundTuples = soundTuples;
         }
 

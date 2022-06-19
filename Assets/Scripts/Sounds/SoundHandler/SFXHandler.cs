@@ -19,8 +19,8 @@ namespace Theater.Sounds {
         // Constructor
         //--------------------------------------------------------------------------------
 
-        public SFXHandler(string title, SearchTag searchTag, SoundTuple[] soundTuples) 
-            : base (title, searchTag, soundTuples) { }
+        public SFXHandler(string title, SearchTag[] searchTags, string[] associations, SoundTuple[] soundTuples) 
+            : base (title, searchTags, associations, soundTuples) { }
 
         //--------------------------------------------------------------------------------
         // Methods

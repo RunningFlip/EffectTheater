@@ -1,4 +1,5 @@
 ﻿using Theater.Sounds;
+using UnityEditor;
 using UnityEngine;
 
 //--------------------------------------------------------------------------------
@@ -17,27 +18,37 @@ namespace Theater.UI {
         [Space]
         [SerializeField] private SearchFilter searchFilter;
 
+        private SoundCollectionContainer container;
+
         //--------------------------------------------------------------------------------
         // Methods
         //--------------------------------------------------------------------------------
 
         private void Awake() {
 
-            SoundCollectionContainer container = new SoundCollectionContainer();
+            this.container = new SoundCollectionContainer();
+            this.searchFilter.SoundCollectionContainer = this.container;
 
-            this.searchFilter.SoundCollectionContainer = container;
-
-            if (container.SFXCollection != null) {
-                this.sfxScrollView.InitScrollView(container.SFXCollection);
+            if (this.container.SFXCollection != null) {
+                this.sfxScrollView.InitScrollView(this.container.SFXCollection);
             }
 
-            if (container.AmbientCollection != null) {
-                this.ambientScrollView.InitScrollView(container.AmbientCollection);
+            if (this.container.AmbientCollection != null) {
+                this.ambientScrollView.InitScrollView(this.container.AmbientCollection);
             }
 
-            if (container.MusicCollection != null) {
-                this.musicScrollView.InitScrollView(container.MusicCollection);
+            if (this.container.MusicCollection != null) {
+                this.musicScrollView.InitScrollView(this.container.MusicCollection);
             }
+        }
+
+        //--------------------------------------------------------------------------------
+
+        private void OnDestroy() {
+
+            EditorUtility.SetDirty(this.container.SFXCollection);
+            EditorUtility.SetDirty(this.container.AmbientCollection);
+            EditorUtility.SetDirty(this.container.MusicCollection);
         }
 
         //--------------------------------------------------------------------------------

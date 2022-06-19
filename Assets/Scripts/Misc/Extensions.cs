@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEditor;
+using UnityEngine;
 
 //--------------------------------------------------------------------------------
 
@@ -14,6 +15,15 @@ public static class Extensions {
 
     public static T GetRandom<T>(this T[] clips) {
         return clips[new System.Random().Next(0, clips.Length)];
+    }
+
+    //--------------------------------------------------------------------------------
+
+    public static void Show(this CanvasGroup canvasGroup, bool show) {
+
+        canvasGroup.alpha = show ? 1f : 0f; 
+        canvasGroup.interactable = show; 
+        canvasGroup.blocksRaycasts = show;
     }
 
     //--------------------------------------------------------------------------------
